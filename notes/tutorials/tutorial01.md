@@ -38,5 +38,22 @@ $ python manage.py startapp polls
 ```
 * where 'polls' is the app name
 
+Write the simplest view (Coding starts from here!!)
+```
+polls01/view.py
+```
+
+Edit urls.py to route the response
+```
+polls01/urls.py
+```
+
+Edit mysite/urls.py to include the urls in polls01
+```
+mysite/urls.py
+```
+
+
+
 
 
