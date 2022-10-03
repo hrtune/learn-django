@@ -28,8 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# This holds the names of all Django applications that are activated in this
+# Django instance.
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
