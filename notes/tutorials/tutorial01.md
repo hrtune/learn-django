@@ -40,20 +40,15 @@ $ python manage.py startapp polls
 
 Write the simplest view (Coding starts from here!!)
 ```
-polls01/view.py
+polls/view.py
 ```
 
 Edit urls.py to route the response
 ```
-polls01/urls.py
+polls/urls.py
 ```
 
 Edit mysite/urls.py to include the urls in polls01
 ```
 mysite/urls.py
 ```
-
-
-
-
-
