@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # This holds the names of all Django applications that are activated in this
 # Django instance.
 INSTALLED_APPS = [
+    "polls.apps.PollsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
