@@ -5,12 +5,16 @@ Set up databases
 	* ENGINE : choose the database engine from https://github.com/django/django/tree/main/django/db/backends
 	* NAME : name of your database
 
+---
+
 Create models
 ```
 polls/models.py
 ```
 * Each class represents a model for the database.
 * Each attribute for a model represents a field (column) for the model.
+
+---
 
 Activate models
 * Add 'polls.apps.PollsConfig' into `INSTALLED_APPS` list in `settings.py`.
@@ -23,16 +27,22 @@ $ python manage.py makemigrations polls
 $ python manage.py migrate
 ```
 
+---
+
 See SQL to run when migrate
 ```sh
 $ python manage.py sqlmigrate polls 0001
 ```
 * 0001 is an index number of migrations
 
+---
+
 Run shell of django
 ```sh
 $ python manage.py shell
 ```
+
+---
 
 Run python commands to create objects
 c.f. https://docs.djangoproject.com/en/4.1/topics/db/queries/
@@ -59,10 +69,14 @@ q.save() # Don't forget to save
 
 ```
 
+---
+
 Define a `__str__()` method for each model
 ```
 polls/models.py
 ```
+
+---
 
 Add a custom method to a model
 ```
@@ -75,6 +89,8 @@ class Question(models.Model):
 			#...
 ```
 * I think this registers the method itself to the model... (Maybe)
+
+---
 
 More shell commands
 ```python
