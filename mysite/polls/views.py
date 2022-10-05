@@ -1,8 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def index(request):
+# Index
+def index01(request):
     return HttpResponse("Hello, world! You're at polls index.")
+
+def index(request):
+    # sort QuerySet using its order_by method. '-pub_date' means descending
+    # order
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+
+    # QuerySet is iterable
+    output = ', '.join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
 
 # Get question_id from urls
 def detail(request, question_id):
