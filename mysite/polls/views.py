@@ -18,13 +18,19 @@ def index02(request):
     return HttpResponse(output)
 
 # Render using a template and context
-def index(request):
+def index03(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     template = loader.get_template('polls/index.html')
     context = {
         'latest_question_list': latest_question_list,
     }
     return HttpResponse(template.render(context, request))
+
+# Render using a shortcut render()
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
 
 # Get question_id from urls
 def detail(request, question_id):
