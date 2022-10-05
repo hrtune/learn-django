@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 from .models import Question
 
 # Index
 def index01(request):
     return HttpResponse("Hello, world! You're at polls index.")
 
-def index(request):
+# hard-coded response
+def index02(request):
     # sort QuerySet using its order_by method. '-pub_date' means descending
     # order
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -14,6 +16,15 @@ def index(request):
     # QuerySet is iterable
     output = ', '.join([q.question_text for q in latest_question_list])
     return HttpResponse(output)
+
+# Render using a template and context
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    template = loader.get_template('polls/index.html')
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 # Get question_id from urls
 def detail(request, question_id):
