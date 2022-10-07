@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.views import generic
 from django.urls import reverse
+from django.utils import timezone
 from .models import Question, Choice
 
 
@@ -45,10 +46,19 @@ class IndexView(generic.ListView):
     # the default is 'question_list' (where 'modelName_list')
     context_object_name = 'latest_question_list'
 
-    # pass this object to the template 
-    def get_queryset(self):
+    # pass the object, which this function returns, to the template 
+    def get_queryset01(self):
         """Return the last five published questions."""
         return Question.objects.order_by('-pub_date')[:5]
+
+    def get_queryset(self):
+        """
+        Return the last five published questions (not including those set to be
+        published in the future).
+        """
+        return Question.objects.filter(
+                   pub_date__lte=timezone.now()
+               ).order_by('-pub_date')[:5]
 
 
 
@@ -76,6 +86,12 @@ class DetailView(generic.DetailView):
     # the default context_object_name is question (if Model then model)
     model = Question
     template_name = 'polls/detail.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 # ------ Results ------

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 import datetime
 
 # Each class represents a schema of the database
@@ -12,7 +13,8 @@ class Question(models.Model):
         return self.question_text
 
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 # Choices for a question
 class Choice(models.Model):
