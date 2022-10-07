@@ -1,7 +1,7 @@
-{# Use a url tag to avoid hard-coded urls #}
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
+        {# Use a url tag to avoid hard-coded urls #}
         <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
